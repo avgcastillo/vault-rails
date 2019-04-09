@@ -231,7 +231,7 @@ module Vault
         # skipping any callbacks and validation. This is okay, because we are
         # already in a transaction due to the callback.
         if !changes.empty?
-          self.update_columns(changes)
+          self.class.where(id: id).update_all(changes)
         end
 
         return true
